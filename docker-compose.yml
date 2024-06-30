@@ -3,10 +3,17 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    entrypoint: php artisan octane:frankenphp --max-requests=1
+    entrypoint: php artisan octane:frankenphp --max-requests=100
     ports:
       - "80:8000"
       - "443:443"
       - "443:443/udp"
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
     #volumes:
     #  - ./src:/var/www/html
+
+volumes:
+  caddy_data:
+  caddy_config:
