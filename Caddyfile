@@ -1,7 +1,19 @@
-frankenphp
+{
+  frankenphp
+}
 
 localhost {
-    root * public/
-    encode zstd br gzip
-    php_server
+  # Set the webroot to the public/ directory
+  root * /var/www/html/public
+
+  # Enable compression (optional)
+  encode zstd br gzip
+
+  # Serve PHP files from the public directory
+  route / {
+    handler php_server
+  }
+
+  # Enable HTTPS with automatic certificate generation and renewal
+  tls self_sign
 }
