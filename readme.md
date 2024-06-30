@@ -12,4 +12,4 @@ FrankenPHP is build on top of Caddy. You dont need any other library/binaries li
 
 ## Run this boilerplate
 
-Just run `docker compose up` and you are dond
+Just run `docker compose up` and you are done

@@ -23,11 +23,20 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy the application source code
-COPY ./src /app
+COPY ./src /var/www/html
 
-WORKDIR /app
+WORKDIR /var/www/html
 
-# Install Laravel dependencies
-RUN composer install --no-dev --optimize-autoloader
+# Set permissions
+RUN chown -R www-data:www-data /var/www/html \
+    && mkdir -p /var/www/html/storage \
+    && chmod -R 755 /var/www/html/storage \
+    && mkdir -p /var/www/html/vendor \
+    && chmod -R 755 /var/www/html/vendor
+
+RUN composer install --no-interaction
+
+# Check if vendor/autoload.php exists
+RUN ls -al vendor
 
 ENTRYPOINT ["php", "artisan", "octane:frankenphp"]
