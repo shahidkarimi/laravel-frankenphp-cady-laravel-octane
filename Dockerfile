@@ -39,6 +39,8 @@ RUN composer install --no-interaction
 # Check if vendor/autoload.php exists
 RUN ls -al vendor
 
+RUN cp .env.example .env
+
 RUN php artisan key:generate
 
 ENTRYPOINT ["php", "artisan", "octane:frankenphp"]
