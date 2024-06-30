@@ -1,0 +1,10 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    entrypoint: php artisan octane:frankenphp --max-requests=1
+    ports:
+      - "80:8000"
+    volumes:
+      - ./src:/app

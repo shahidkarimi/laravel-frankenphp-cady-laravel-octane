@@ -1,0 +1,7 @@
+frankenphp
+
+localhost {
+    root * public/
+    encode zstd br gzip
+    php_server
+}
