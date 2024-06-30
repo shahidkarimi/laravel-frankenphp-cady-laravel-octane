@@ -16,6 +16,12 @@ RUN install-php-extensions \
     tokenizer \
     xml
 
+RUN apt-get update && apt-get install -y \
+    zip \
+    unzip \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
 # Copy the application source code
 COPY ./src /app
 
